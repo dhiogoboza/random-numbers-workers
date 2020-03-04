@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<title>Random Numbers - Web Workers</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+.mySlides {display: none}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/calculate.js"></script>
+<body class="w3-content w3-border-left w3-border-right">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-light-grey w3-collapse w3-top" style="z-index:3;width:260px" id="mySidebar">
+  <div class="w3-container w3-display-container w3-padding-16">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-transparent w3-display-topright"></i>
+    <h3>Parameters</h3>
+    <hr>
+    <form action="#" id="form_tests_data">
+      <p><label><i class="fa fa-arrow-up"></i> Start number</label></p>
+      <input class="w3-input w3-border" type="number" value="0" name="input_first_number">
+      <p><label><i class="fa fa-arrow-down"></i> Last number</label></p>
+      <input class="w3-input w3-border" type="number" value="5" name="input_last_number" min="1">
+      <p><label><i class="fa fa-list-ol"></i> Numbers count</label></p>
+      <input class="w3-input w3-border" type="number" value="1000" name="input_numbers_count" min="1">
+      <p><label><i class="fa fa-microchip"></i> Threads</label></p>
+      <input class="w3-input w3-border" type="number" value="4" name="input_threads" min="1">
+      <p><button class="w3-button w3-block w3-green w3-left-align" id="button_calc" type="submit"><i class="fa fa-check w3-margin-right"></i> Calculate</button></p>
+    </form>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#index" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-microchip"></i> Tests</a>
+    <a href="#about" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-question"></i> About</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-16"><i class="fa fa-envelope"></i> Contact</a>
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <span class="w3-bar-item">Random Numbers Tests</span>
+  <a href="javascript:void(0)" class="w3-right w3-bar-item w3-button" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main w3-white" style="margin-left:260px">
+
+  <!-- Push down content on small screens -->
+  <div class="w3-hide-large" style="margin-top:80px"></div>
+
+  <!-- Slideshow Header -->
+  <div class="w3-container" id="index">
+    <h2 class="w3-text-green">Random Numbers Tests</h2>
+    
+  </div>
+
+  <div class="w3-container">
+    <h4><strong>Results</strong></h4>
+    <div class="w3-row w3-large">
+      <div class="w3-col">
+        <p><i class="fa fa-fw fa-adjust"></i> Average: <span id="results_average"></span></p>
+        <p><i class="fa fa-fw fa-line-chart"></i> Median: <span id="results_median"></span></p>
+        <p><i class="fa fa-fw fa-area-chart"></i> Mode: <span id="results_mode"></span></p>
+        <p><i class="fa fa-fw fa-pie-chart"></i> Variance: <span id="results_variance"></span></p>
+        <p><i class="fa fa-fw fa-bar-chart"></i> Standard deviation: <span id="results_deviation"></span></p>
+		<p><i class="fa fa-fw fa-clock-o"></i> Elapsed time: <span id="elapsed_time"></span></p>
+		<p><i class="fa fa-fw fa-check-square-o"></i> All selected numbers: <span id="results_all"></span></p>
+      </div>
+    </div>
+    <hr>
+
+    <h4 id="about"><strong>About</strong></h4>
+    <p>This site was developed to test if the odd or even game is fair or no. Do the tests and find out your conclusions...</p>
+    <hr>
+
+    <h4 id="contact"><strong>Contact</strong></h4>
+    <p>Find me on github <a href="https://github.com/dhiogoboza/"  target="_blank" title="GitHub">dhiogoboza</a> or contact me by email <a href="mailto:dhiogoboza@gmail.com">dhiogoboza@gmail.com</a>.</p>
+  </div>
+  <hr>
+  
+  <footer class="w3-container w3-padding-16" style="margin-top:32px">Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></footer>
+
+<!-- End page content -->
+</div>
+
+<script>
+// Script to open and close sidebar when on tablets and phones
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>
