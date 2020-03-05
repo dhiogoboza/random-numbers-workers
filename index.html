@@ -13,6 +13,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/calculate.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 <body class="w3-content w3-border-left w3-border-right">
 
 <!-- Sidebar/menu -->
@@ -42,7 +43,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 <!-- Top menu on small screens -->
 <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-  <span class="w3-bar-item">Random Numbers Tests</span>
+  <span class="w3-bar-item">Random Numbers Statistics</span>
   <a href="javascript:void(0)" class="w3-right w3-bar-item w3-button" onclick="w3_open()"><i class="fa fa-bars"></i></a>
 </header>
 
@@ -57,27 +58,29 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
   <!-- Slideshow Header -->
   <div class="w3-container" id="index">
-    <h2 class="w3-text-green">Random Numbers Tests</h2>
+    <h2 class="w3-text-green">Random Numbers Statistics</h2>
     
   </div>
 
   <div class="w3-container">
     <h4><strong>Results</strong></h4>
     <div class="w3-row w3-large">
-      <div class="w3-col">
-        <p><i class="fa fa-fw fa-adjust"></i> Average: <span id="results_average"></span></p>
-        <p><i class="fa fa-fw fa-line-chart"></i> Median: <span id="results_median"></span></p>
-        <p><i class="fa fa-fw fa-area-chart"></i> Mode: <span id="results_mode"></span></p>
-        <p><i class="fa fa-fw fa-pie-chart"></i> Variance: <span id="results_variance"></span></p>
-        <p><i class="fa fa-fw fa-bar-chart"></i> Standard deviation: <span id="results_deviation"></span></p>
-		<p><i class="fa fa-fw fa-clock-o"></i> Elapsed time: <span id="elapsed_time"></span></p>
-		<p><i class="fa fa-fw fa-check-square-o"></i> All selected numbers: <span id="results_all"></span></p>
+      <div class="w3-col w3-half">
+        <p><i class="fa fa-fw fa-circle"></i> Average: <span id="results_average"></span></p>
+        <p><i class="fa fa-fw fa-circle"></i> Median: <span id="results_median"></span></p>
+        <p><i class="fa fa-fw fa-circle"></i> Mode: <span id="results_mode"></span></p>
       </div>
+      <div class="w3-col w3-half">
+        <p><i class="fa fa-fw fa-circle"></i> Variance: <span id="results_variance"></span></p>
+        <p><i class="fa fa-fw fa-circle"></i> Standard deviation: <span id="results_deviation"></span></p>
+        <p><i class="fa fa-fw fa-circle"></i> Elapsed time: <span id="elapsed_time"></span></p>
+      </div>
+      <canvas id="chart" width="400" height="200"></canvas>
     </div>
     <hr>
 
     <h4 id="about"><strong>About</strong></h4>
-    <p>This site was developed to test if the odd or even game is fair or no. Do the tests and find out your conclusions...</p>
+    <p>This site was developed to an activity for the course Tópicos Especiais em Computação VIII from UFRN in 2020.1.</p>
     <hr>
 
     <h4 id="contact"><strong>Contact</strong></h4>

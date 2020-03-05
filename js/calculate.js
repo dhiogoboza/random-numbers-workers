@@ -8,30 +8,30 @@ let localAllSelectedNumbers = [];
  * Using Math.round() will give you a non-uniform distribution!
  */
 function getRandomInt(min, max) {
-	min = Math.ceil(min);
+    min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function calculateThread(initialNumber, lastNumber, iterations, threadIndex, isWorker) {
-	for (let i = initialNumber; i <= lastNumber; i++) {
-		localAllSelectedNumbers[i] = 0;
-	}
+    for (let i = initialNumber; i <= lastNumber; i++) {
+        localAllSelectedNumbers[i] = 0;
+    }
 
-	for (let i = 0; i < iterations; i++) {
-		localAllSelectedNumbers[getRandomInt(initialNumber, lastNumber)]++;
-	}
+    for (let i = 0; i < iterations; i++) {
+        localAllSelectedNumbers[getRandomInt(initialNumber, lastNumber)]++;
+    }
 
-	if (!isWorker) {
-		threadFinished[threadIndex] = true;
-		checkAllFinished();
-	}
+    if (!isWorker) {
+        threadFinished[threadIndex] = true;
+        checkAllFinished();
+    }
 }
 
 onmessage = function(e) {
-	var arr = e.data;
-	calculateThread(arr[0], arr[1], arr[2], arr[3], true);
+    var arr = e.data;
+    calculateThread(arr[0], arr[1], arr[2], arr[3], true);
 
-	var result = [arr[3], localAllSelectedNumbers];
-	postMessage(result);
+    var result = [arr[3], localAllSelectedNumbers];
+    postMessage(result);
 }
