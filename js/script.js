@@ -11,7 +11,37 @@ let configs = {
     lastNumber: "input_last_number",
     numbersCount: "input_numbers_count",
     threads: "input_threads",
-    chartCanvas: "chart"
+    chartCanvas: "chart",
+    avgLabel: "#avg_label",
+    medLabel: "#med_label",
+    modLabel: "#mod_label",
+    varLabel: "#var_label",
+    stdLabel: "#std_label",
+    elaLabel: "#ela_label",
+    resLabel: "#res_label",
+    variableLabel: "#variable_label"
+};
+
+let i18n = {
+    chartTitle: "Histogram",
+    average: "Average",
+    median: "Median",
+    mode: "Mode",
+    variance: "Variance",
+    standardDeviation: "Standard deviation",
+    elapsedTime: "Elapsed time",
+    results: "Results",
+};
+
+let i18nPtBR = {
+    chartTitle: "Histograma",
+    average: "Média",
+    median: "Mediana",
+    mode: "Moda",
+    variance: "Variância",
+    standardDeviation: "Desvio padrão",
+    elapsedTime: "Tempo",
+    results: "Resultados",
 };
 
 let histogramChart;
@@ -164,7 +194,6 @@ function checkAllFinished() {
     // update chart
     histogramChart.data.labels = dataLabels;
     histogramChart.data.datasets = [{
-        label: "Count",
         data: dataValues,
         backgroundColor: dataBackgroundColors,
         borderColor: dataBorderColors,
@@ -181,7 +210,37 @@ function checkAllFinished() {
     $calButton.removeAttr("disabled");
 }
 
+function findGetParameter(parameterName) {
+    let result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+}
+
 $(function() {
+    if (findGetParameter("lang") == "ptBR") {
+        i18n = {...i18n, ...i18nPtBR};
+    }
+
+    let variable = findGetParameter("variable");
+    if (variable != null) {
+        $(configs.variableLabel).html(variable);
+    }
+
+    $(configs.avgLabel).html(i18n.average);
+    $(configs.medLabel).html(i18n.median);
+    $(configs.modLabel).html(i18n.mode);
+    $(configs.varLabel).html(i18n.variance);
+    $(configs.stdLabel).html(i18n.standardDeviation);
+    $(configs.elaLabel).html(i18n.elapsedTime);
+    $(configs.resLabel).html(i18n.results);
+
     $calButton = $(configs.calcButton);
     $formData = $(configs.formData);
     $averageResult = $(configs.averageResult);
@@ -195,6 +254,9 @@ $(function() {
     histogramChart = new Chart(chartCtx, {
         type: 'bar',
         options: {
+            legend: {
+                display: false
+            },
             scales: {
                 yAxes: [{
                     ticks: {
@@ -204,7 +266,7 @@ $(function() {
             },
             title: {
                 display: true,
-                text: 'Histogram'
+                text: i18n.chartTitle
             },
             events: false,
             tooltips: {
@@ -216,16 +278,17 @@ $(function() {
             animation: {
                 duration: 1,
                 onComplete: function () {
-                    var chartInstance = this.chart,
-                        ctx = chartInstance.ctx;
-                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize, Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
+                    let chartInstance = this.chart;
+                    let ctx = chartInstance.ctx;
+                    ctx.font = Chart.helpers.fontString(Chart.defaults.global.defaultFontSize,
+                        Chart.defaults.global.defaultFontStyle, Chart.defaults.global.defaultFontFamily);
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'bottom';
 
                     this.data.datasets.forEach(function (dataset, i) {
-                        var meta = chartInstance.controller.getDatasetMeta(i);
+                        let meta = chartInstance.controller.getDatasetMeta(i);
                         meta.data.forEach(function (bar, index) {
-                            var data = dataset.data[index];                            
+                            let data = dataset.data[index];                            
                             ctx.fillText(data, bar._model.x, bar._model.y - 5);
                         });
                     });

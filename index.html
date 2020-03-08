@@ -23,7 +23,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <h3>Parameters</h3>
     <hr>
     <form action="#" id="form_tests_data">
-      <p><label><i class="fa fa-arrow-up"></i> Start number</label></p>
+      <p><label><i class="fa fa-arrow-up"></i> First number</label></p>
       <input class="w3-input w3-border" type="number" value="0" name="input_first_number">
       <p><label><i class="fa fa-arrow-down"></i> Last number</label></p>
       <input class="w3-input w3-border" type="number" value="5" name="input_last_number" min="1">
@@ -63,24 +63,26 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   </div>
 
   <div class="w3-container">
-    <h4><strong>Results</strong></h4>
+    <div>
+    <h4><strong id="res_label">Results</strong> <strong id="variable_label"></strong></h4>
     <div class="w3-row w3-large">
       <div class="w3-col w3-half">
-        <p><i class="fa fa-fw fa-circle"></i> Average: <span id="results_average"></span></p>
-        <p><i class="fa fa-fw fa-circle"></i> Median: <span id="results_median"></span></p>
-        <p><i class="fa fa-fw fa-circle"></i> Mode: <span id="results_mode"></span></p>
+        <p><i class="fa fa-fw fa-circle"></i> <span id="avg_label">Average</span>: <span id="results_average"></span></p>
+        <p><i class="fa fa-fw fa-circle"></i> <span id="med_label">Median</span>: <span id="results_median"></span></p>
+        <p><i class="fa fa-fw fa-circle"></i> <span id="mod_label">Mode</span>: <span id="results_mode"></span></p>
       </div>
       <div class="w3-col w3-half">
-        <p><i class="fa fa-fw fa-circle"></i> Variance: <span id="results_variance"></span></p>
-        <p><i class="fa fa-fw fa-circle"></i> Standard deviation: <span id="results_deviation"></span></p>
-        <p><i class="fa fa-fw fa-circle"></i> Elapsed time: <span id="elapsed_time"></span></p>
+        <p><i class="fa fa-fw fa-circle"></i> <span id="var_label">Variance</span>: <span id="results_variance"></span></p>
+        <p><i class="fa fa-fw fa-circle"></i> <span id="std_label">Standard deviation</span>: <span id="results_deviation"></span></p>
+        <p><i class="fa fa-fw fa-circle"></i> <span id="ela_label">Elapsed time</span>: <span id="elapsed_time"></span></p>
       </div>
       <canvas id="chart" width="400" height="200"></canvas>
+    </div>
     </div>
     <hr>
 
     <h4 id="about"><strong>About</strong></h4>
-    <p>This site was developed to an activity for the course Tópicos Especiais em Computação VIII from UFRN in 2020.1.</p>
+    <p>This site was developed to an activity for the course Tópicos Especiais em Computação VIII from UFRN in 2020.1. Source available at <a href="https://github.com/dhiogoboza/random-numbers-workers">https://github.com/dhiogoboza/random-numbers-workers</a></p>
     <hr>
 
     <h4 id="contact"><strong>Contact</strong></h4>
