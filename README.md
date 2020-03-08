@@ -22,4 +22,4 @@ This site was developed to an activity for the course Tópicos Especiais em Comp
 
 ## License
 
-MIT License. See [LICENSE.md](LICENSE).
+MIT License. See [LICENSE](LICENSE).
